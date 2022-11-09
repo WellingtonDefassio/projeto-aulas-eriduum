@@ -1,4 +1,4 @@
-package com.example.projeto.aulas;
+package com.example.projeto.aulas.greeting;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +17,7 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
-    
+
 
 
 }

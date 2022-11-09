@@ -1,8 +1,7 @@
-package com.example.projeto.aulas.calculator.exception;
+package com.example.projeto.aulas.outher.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;

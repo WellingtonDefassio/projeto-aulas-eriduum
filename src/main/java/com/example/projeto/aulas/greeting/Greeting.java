@@ -1,4 +1,4 @@
-package com.example.projeto.aulas;
+package com.example.projeto.aulas.greeting;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
