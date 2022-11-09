@@ -2,6 +2,7 @@ package com.example.projeto.aulas.outher.service;
 
 
 import com.example.projeto.aulas.outher.data.dto.v1.PersonDTO;
+import com.example.projeto.aulas.outher.mapper.DozerMapper;
 import com.example.projeto.aulas.outher.model.Person;
 import com.example.projeto.aulas.outher.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +25,27 @@ public class PersonService {
 
     public PersonDTO findById(Long id) {
         logger.info("Find one person");
-
-        return personRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No records found for this ID"));
+        Person person = personRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No records found for this ID"));
+        return DozerMapper.parseObject(person, PersonDTO.class);
     }
 
     public List<PersonDTO> findAll() {
         logger.info("Find all person");
 
-        return personRepository.findAll();
+        List<PersonDTO> personDTOS = DozerMapper.parseListObjects(personRepository.findAll(), PersonDTO.class);
+
+        return personDTOS;
     }
 
 
     public PersonDTO create(Person person) {
         logger.info("Create one person!");
-        return personRepository.save(person);
+        return DozerMapper.parseObject(personRepository.save(person), PersonDTO.class);
     }
     public PersonDTO update(Person person) {
         logger.info("Create one person!");
-        personRepository.findById(person.getId()).orElseThrow(() -> new NoSuchElementException("No records found for this ID"));
-        return person;
+        Person personRetorn = personRepository.findById(person.getId()).orElseThrow(() -> new NoSuchElementException("No records found for this ID"));
+        return DozerMapper.parseObject(personRetorn, PersonDTO.class);
     }
 
 
