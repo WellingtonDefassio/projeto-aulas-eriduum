@@ -2,7 +2,9 @@ package com.example.projeto.aulas.outher.service;
 
 
 import com.example.projeto.aulas.outher.data.dto.v1.PersonDTO;
+import com.example.projeto.aulas.outher.data.dto.v2.PersonDTOV2;
 import com.example.projeto.aulas.outher.mapper.DozerMapper;
+import com.example.projeto.aulas.outher.mapper.custom.PersonMapper;
 import com.example.projeto.aulas.outher.model.Person;
 import com.example.projeto.aulas.outher.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class PersonService {
 
     @Autowired
      private PersonRepository personRepository;
+    @Autowired
+    private PersonMapper personMapper;
+
 
 
 
@@ -41,6 +46,11 @@ public class PersonService {
     public PersonDTO create(Person person) {
         logger.info("Create one person!");
         return DozerMapper.parseObject(personRepository.save(person), PersonDTO.class);
+    }
+    public PersonDTOV2 createV2(PersonDTOV2 person) {
+        logger.info("Create one person!");
+        Person entity = personMapper.convertDTOToEntity(person);
+        return DozerMapper.parseObject(entity, PersonDTOV2.class);
     }
     public PersonDTO update(Person person) {
         logger.info("Create one person!");
